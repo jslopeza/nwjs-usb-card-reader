@@ -1,0 +1,14 @@
+{
+  "name": "swipe-webkit-proto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Binoy Patel",
+  "license": "ISC",
+  "dependencies": {
+    "node-hid": "^0.5.1"
+  }
+}

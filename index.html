@@ -1,0 +1,67 @@
+<script>
+var HID = require('node-hid');
+var devices = HID.devices();
+var resultObject = search(2049, devices);
+
+function search(nameKey, myArray) {
+  for (var i = 0; i < myArray.length; i++) {
+      if (myArray[i].vendorId === nameKey) {
+          return myArray[i];
+      }
+  }
+}
+
+var device = new HID.HID(resultObject.path);
+
+device.on('data', function(info){
+  console.log(info);
+});
+
+// var usb = require('usb');
+// var device = usb.findByIds(2049, 2);
+//
+// usb.setDebugLevel(1);
+//
+// device.open();
+//
+// if(device.interfaces[0].isKernelDriverActive())
+//     device.interfaces[0].detachKernelDriver();
+//
+// function gotData(err, data){
+//   if(err) throw err;
+//   console.log(data);
+// }
+//
+//
+// console.log(device.interfaces[0]);
+// device.interfaces[0].claim();
+
+// device.interfaces.forEach(function(inter){
+//   console.log(inter);
+//
+//   inter.endpoints.forEach(function(end){
+//     //end.startPoll(7, end.descriptor.wMaxPacketSize);
+//     end.controlTransfer(0x21, 0x09, 0,0, gotData);
+//     end.on('data', function(data){
+//       console.log(data);
+//     })
+//   })
+// })
+/*var theInterface = device.interfaces[0];
+
+console.log(theInterface);
+if(theInterface.isKernelDriverActive()) theInterface.detachKernelDriver();
+
+//theInterface.claim();
+var theEndpoint = theInterface.endpoints[0];
+console.log(theEndpoint);
+
+
+theEndpoint.transfer(64, function(data){
+  console.log(data);
+});
+
+theEndpoint.on('data', function(data){
+  console.log(data);
+});*/
+</script>
